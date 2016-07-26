@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+   {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+          {% endif %}
+          {% endwith %}
+         
+   <h1 id="green"> Registration </h1>       
+   <form action='/create' method="POST">
+	   <div><label> Name: </label> <input id='fn' type='text' name='name'> </div>
+	   <div><label> Username: </label> <input id='ln' type='text' name = 'username'></div>
+	   <div><label> E-mail:</label> <input id='em'type='text' name ='regemail'></div>
+	   <div><label> Password: </label> <input id='pw' type='text' name ='regpassword'></div>
+	   <div><label> Confirm password: </label> <input id='cpw' type='text' name ='regconfpassword'></div>
+     <div><label> Date of hire (MM/DD/YYYY):</label> <input type='date' name='date_hired'>
+	   <div><input id='reg' type="submit" value ="REGISTER"></div>
+   </form>
+  
+   
+  <h1 id ="orange"> Log In </h1>
+   <form action ='/login' method ="POST">
+   		<div><label> User name:</label> <input id='lem' type='text' name ='loginusername'></div>
+	   	<div><label> Password: </label> <input id='lpw' type='text' name ='loginpassword'></div>
+	   	<div><input id ='login' type="submit" value ="LOGIN"></div>
+	</form>	   	
+  </body>
+</html>

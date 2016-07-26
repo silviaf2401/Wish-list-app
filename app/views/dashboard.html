@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <h1>Hello, {{session['name']}}</h1>
+    <h2><a href='/logoff'>Log off </a>
+    <h2> <a href='/wish_items/create'>Add item</a>
+  <h1> Your Wish List </h1>
+  <table>
+    		<tr> 
+    			<td> Item: </td>
+    			<td> Added by: </td>
+    			<td> Date added: </td>
+    			<td> Action: </td>
+    		</tr>
+    		{%for element in selfwishlist%}
+    		<tr> 
+    			<td> <a href="/wish_items/{{element['item_id']}}">{{element['item_name']}}</a> </td>
+          		<td> {{element['name']}}</td>
+          		<td> {{element['created_at']}}</td>
+          		<td> {%if element['addedby_userid'] == session['id']:%}
+          			<form action="/delete/{{element['item_id']}}" method="POST">
+    			 <input type =submit name='deletefromdb' value='DELETE'>
+          			{%endif%}</td>
+          		<td> {%if element['addedby_userid'] != session['id']:%}
+          			<form action="/removefromwishlist/{{element['item_id']}}" method="POST">
+    			 <input type =submit name='removefromwishlist' value='REMOVE FROM WISHLIST'>
+          			{%endif%}
+          		</form>
+          			</td> 	
+    		</tr>
+            {%endfor%}
+   </table>         
+ <h1> Other users' Wish List </h1>
+ <table>
+    		<tr> 
+    			<td> Item: </td>
+    			<td> Added by: </td>
+    			<td> Date added: </td>
+    			<td> Action: </td>
+    		</tr>
+    		{%for element in otherswishlist%}
+    		<tr> 
+    			<td> <a href="/wish_items/{{element['item_id']}}">{{element['item_name']}}</a> </td>
+          		<td> {{element['name']}}</td>
+          		<td> {{element['created_at']}}</td>
+          		<td> 
+          			<form action="/addtowishlist/{{element['item_id']}}" method="POST">
+    			 <input type =submit name='addtowishlist' value='ADD TO MY WISHLIST'></td>
+    		  </form>
+    		</tr>
+            {%endfor%}
+
+    </table>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,13 @@
+<html>
+<body>
+<a href='/dashboard'>Home</a>
+<a href='/logoff'>Logout</a>  
+<p> {{result[0]['item_name']}}</p>
+<p> Users who added this product/item under their wish list </p>
+{%for element in result%}
+<p> {{ element['name']}}</p>
+{%endfor%}
+
+    		
+</body>
+</html>  
